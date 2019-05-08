@@ -56304,7 +56304,6 @@ var render = function() {
                   attrs: { href: notification.data.link },
                   on: {
                     click: function($event) {
-                      $event.preventDefault()
                       return _vm.markAsRead(notification)
                     }
                   }

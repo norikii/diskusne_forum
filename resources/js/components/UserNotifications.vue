@@ -6,7 +6,7 @@
 
         <ul class="dropdown-menu">
             <li v-for="notification in notifications">
-                <a :href="notification.data.link" @click.prevent="markAsRead(notification)">notification.data.message</a>
+                <a :href="notification.data.link" @click="markAsRead(notification)">notification.data.message</a>
             </li>
         </ul>
     </li>
