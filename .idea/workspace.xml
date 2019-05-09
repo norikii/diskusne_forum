@@ -4,8 +4,7 @@
     <list default="true" id="50954af2-5fe6-4c22-98fc-9997ba25a218" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/UserNotifications.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/UserNotifications.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Thread.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Thread.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Thread.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="361">
-              <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
+              <caret line="82" column="58" lean-forward="true" selection-start-line="82" selection-start-column="58" selection-end-line="82" selection-end-column="58" />
               <folding>
                 <element signature="e#23#62#0#PHP" expanded="true" />
               </folding>
@@ -87,27 +86,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="110">
-                <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
           <provider selected="true" editor-type-id="text-editor" />
@@ -144,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ProfilesController.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ProfilesTest.php" />
         <option value="$PROJECT_DIR$/app/RecordsActivity.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Flash.vue" />
@@ -183,7 +160,6 @@
         <option value="$PROJECT_DIR$/resources/js/components/SubscribeButton.vue" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ThreadSubscriptionController.php" />
         <option value="$PROJECT_DIR$/tests/Feature/SubscribeToThreadsTest.php" />
-        <option value="$PROJECT_DIR$/app/Thread.php" />
         <option value="$PROJECT_DIR$/app/ThreadSubscription.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserNotificationController.php" />
@@ -195,6 +171,8 @@
         <option value="$PROJECT_DIR$/app/Notifications/ThreadWasUpdated.php" />
         <option value="$PROJECT_DIR$/resources/js/components/UserNotifications.vue" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/Providers/EventServiceProvider.php" />
+        <option value="$PROJECT_DIR$/app/Thread.php" />
       </list>
     </option>
   </component>
@@ -306,6 +284,17 @@
               <item name="diskusne_forum" type="b2602c69:ProjectViewProjectNode" />
               <item name="diskusne_forum" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="diskusne_forum" type="b2602c69:ProjectViewProjectNode" />
+              <item name="diskusne_forum" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="diskusne_forum" type="b2602c69:ProjectViewProjectNode" />
+              <item name="diskusne_forum" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Providers" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -344,13 +333,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="PHPUnit.NotificationsTest.test_a_user_can_fetch_their_unread_notifications">
-    <configuration name="NotificationsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\NotificationsTest" file="$PROJECT_DIR$/tests/Feature/NotificationsTest.php" scope="Class" />
+  <component name="RunManager" selected="PHPUnit.Feature">
+    <configuration name="Feature" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$/tests/Feature" />
       <method v="2" />
     </configuration>
-    <configuration name="NotificationsTest.test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\NotificationsTest" file="$PROJECT_DIR$/tests/Feature/NotificationsTest.php" method="test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply" scope="Method" />
+    <configuration name="NotificationsTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\NotificationsTest" file="$PROJECT_DIR$/tests/Feature/NotificationsTest.php" scope="Class" />
       <method v="2" />
     </configuration>
     <configuration name="NotificationsTest.test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply_left_by_not_current_user" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -371,11 +360,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.Feature" />
         <item itemvalue="PHPUnit.NotificationsTest.test_a_user_can_fetch_their_unread_notifications" />
         <item itemvalue="PHPUnit.NotificationsTest" />
         <item itemvalue="PHPUnit.NotificationsTest.test_a_user_can_clear_a_notification" />
         <item itemvalue="PHPUnit.NotificationsTest.test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply_left_by_not_current_user" />
-        <item itemvalue="PHPUnit.NotificationsTest.test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply" />
       </list>
     </recent_temporary>
   </component>
@@ -393,20 +382,11 @@
       <workItem from="1554656950299" duration="17444000" />
       <workItem from="1555132830509" duration="134119000" />
       <workItem from="1556397852336" duration="13691000" />
-      <workItem from="1556952039108" duration="25395000" />
+      <workItem from="1556952039108" duration="27934000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="NotificationsTest_test_a_user_can_clear_a_notification - 2019.05.06 at 12h 02m 49s.xml">
-      <configuration name="NotificationsTest.test_a_user_can_clear_a_notification" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="NotificationsTest_test_a_user_can_clear_a_notification - 2019.05.06 at 12h 04m 41s.xml">
-      <configuration name="NotificationsTest.test_a_user_can_clear_a_notification" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
-    <history-entry file="NotificationsTest_test_a_user_can_clear_a_notification - 2019.05.06 at 12h 05m 04s.xml">
-      <configuration name="NotificationsTest.test_a_user_can_clear_a_notification" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="NotificationsTest_test_a_user_can_clear_a_notification - 2019.05.06 at 12h 05m 27s.xml">
       <configuration name="NotificationsTest.test_a_user_can_clear_a_notification" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -428,9 +408,18 @@
     <history-entry file="NotificationsTest_test_a_user_can_fetch_their_unread_notifications - 2019.05.06 at 12h 54m 20s.xml">
       <configuration name="NotificationsTest.test_a_user_can_fetch_their_unread_notifications" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="Feature - 2019.05.09 at 05h 18m 42s.xml">
+      <configuration name="Feature" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Feature - 2019.05.09 at 05h 22m 20s.xml">
+      <configuration name="Feature" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
+    <history-entry file="Feature - 2019.05.09 at 05h 49m 00s.xml">
+      <configuration name="Feature" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216439000" />
+    <option name="totallyTimeSpent" value="218978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -451,7 +440,7 @@
       <window_info id="npm" order="3" weight="0.3299356" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3128964" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3128964" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.325" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -460,7 +449,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32980973" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23044397" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.23044397" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -471,23 +460,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/Feature/FavoritesTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="59" column="58" selection-start-line="59" selection-start-column="58" selection-end-line="59" selection-end-column="58" />
-          <folding>
-            <element signature="e#33#86#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/profiles/activities/created_favorite.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="49" selection-start-line="7" selection-start-column="49" selection-end-line="7" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FavoritesController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -702,16 +674,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Thread.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="85" column="49" selection-start-line="85" selection-start-column="49" selection-end-line="85" selection-end-column="49" />
-          <folding>
-            <element signature="e#23#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/ThreadSubscription.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
@@ -783,13 +745,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/SubscribeButton.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/nav.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -821,16 +776,6 @@
     <entry file="file://$PROJECT_DIR$/artisan">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="110">
-            <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -844,6 +789,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="14" lean-forward="true" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="110">
+            <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/UserNotifications.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -851,10 +813,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/resources/js/components/SubscribeButton.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/NotifyThreadSubscribers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+          <folding>
+            <element signature="e#33#67#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Providers/EventServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding>
+            <element signature="e#33#70#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Thread.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="82" column="58" lean-forward="true" selection-start-line="82" selection-start-column="58" selection-end-line="82" selection-end-column="58" />
+          <folding>
+            <element signature="e#23#62#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
