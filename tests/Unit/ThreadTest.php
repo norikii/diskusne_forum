@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\Notifications\ThreadWasUpdated;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
@@ -131,5 +132,22 @@ class ThreadTest extends TestCase
 
         // assert that the user was sent a notification
         Notification::assertSentTo(auth()->user(), ThreadWasUpdated::class);
+    }
+
+    /** @test */
+    function test_a_thread_can_check_if_the_user_has_read_all_replies()
+    {
+        $this->be(factory('App\User')->create());
+
+        $thread = factory('App\Thread')->create();
+
+        tap(auth()->user(), function ($user) use ($thread) {
+            $this->assertTrue($thread->hasUpdatedFor($user));
+
+            // simulate that the user visited the thread
+            $user->read($thread);
+
+            $this->assertFalse($thread->hasUpdatedFor($user));
+        });
     }
 }

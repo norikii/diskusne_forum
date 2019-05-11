@@ -144,4 +144,15 @@ class Thread extends Model
                 ->where('user_id', auth()->id())
                 ->exists();
     }
+
+    public function hasUpdatedFor($user)
+    {
+        // look in the cache for the proper key
+
+        // user.50.visits.1   -  unique key which will be equal to timestamp
+        $key = $user->visitedThreadCacheKey($this);
+
+        // compare that carbon instance
+        return $this->updated_at > cache($key);
+    }
 }
