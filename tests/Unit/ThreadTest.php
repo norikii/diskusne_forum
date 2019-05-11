@@ -2,7 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 
@@ -110,5 +112,24 @@ class ThreadTest extends TestCase
         $thread->subscribe();
 
         $this->assertTrue($thread->isSubscribedTo);
+    }
+
+    /** @test */
+    function test_a_thread_notifies_all_registered_subscribers_when_a_reply_is_added()
+    {
+        // fake replaces the underlying instance of the facade with a fake version = class for the purposes of testing
+        // that implements api you need
+        // we are faking the notification
+        Notification::fake();
+
+        $this->be(factory('App\User')->create());
+
+        $this->thread->subscribe()->addReply([
+           'body' => 'Foobar',
+           'user_id' => 1
+        ]);
+
+        // assert that the user was sent a notification
+        Notification::assertSentTo(auth()->user(), ThreadWasUpdated::class);
     }
 }
