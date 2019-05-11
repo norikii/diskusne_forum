@@ -91,10 +91,9 @@ class ThreadsController extends Controller
     {
         // record that the user visited this page - record the timestamp
         // when a user visits a thread we will store it in the cache with the current time
-        $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
-
-        // add to the cache key with value of timestamp now
-        cache()->forever($key, Carbon::now());
+        if (auth()->check()) {
+            auth()->user()->read($thread);
+        }
 
         return view('threads.show', compact('thread'));
     }
