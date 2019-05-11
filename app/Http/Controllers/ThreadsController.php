@@ -6,6 +6,7 @@ use App\Channel;
 use App\Filters\ThreadFilters;
 use App\Thread;
 use App\User;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -88,6 +89,13 @@ class ThreadsController extends Controller
      */
     public function show(string $channel, Thread $thread)
     {
+        // record that the user visited this page - record the timestamp
+        // when a user visits a thread we will store it in the cache with the current time
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
+
+        // add to the cache key with value of timestamp now
+        cache()->forever($key, Carbon::now());
+
         return view('threads.show', compact('thread'));
     }
 
