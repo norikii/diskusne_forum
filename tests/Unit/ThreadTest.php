@@ -19,7 +19,7 @@ class ThreadTest extends TestCase
     {
         parent::setUp();
 
-        $this->thread = factory('App\Thread')->create();
+        $this->thread = factory('App\Models\Thread')->create();
     }
 
     /**
@@ -35,7 +35,7 @@ class ThreadTest extends TestCase
      */
     function test_a_thread_has_a_creator()
     {
-        $this->assertInstanceOf('App\User', $this->thread->owner);
+        $this->assertInstanceOf('App\Models\User', $this->thread->owner);
     }
 
     /**
@@ -56,9 +56,9 @@ class ThreadTest extends TestCase
      */
     function test_a_thread_belongs_to_a_channel()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
-        $this->assertInstanceOf('App\Channel', $thread->channel);
+        $this->assertInstanceOf('App\Models\Channel', $thread->channel);
     }
 
     /**
@@ -66,7 +66,7 @@ class ThreadTest extends TestCase
      */
     function test_a_thread_can_make_a_string_path()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         $this->assertEquals("/threads/{$thread->channel->slug}/{$thread->id}", $thread->path());
     }
@@ -74,7 +74,7 @@ class ThreadTest extends TestCase
     /** @test */
     function test_a_thread_can_be_subsribed_to()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         // the user subscribes to the thread
         $thread->subscribe($userId = 1);
@@ -88,7 +88,7 @@ class ThreadTest extends TestCase
     /** @test */
     function test_a_thread_can_be_unsubscribed_from()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         // the user subscribes to the thread
         $thread->subscribe($userId = 1);
@@ -101,9 +101,9 @@ class ThreadTest extends TestCase
     /** @test */
     function test_it_knows_if_authenticated_user_is_subscribed_to_it()
     {
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
         $this->assertFalse($thread->isSubscribedTo);
 

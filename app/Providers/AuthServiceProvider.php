@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Policies\ThreadPolicy;
-use App\Thread;
+use App\Models\Thread;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -15,8 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-         'App\Thread' => 'App\Policies\ThreadPolicy',
-         'App\Reply' => 'App\Policies\ReplyPolicy',
+         'App\Models\Thread' => 'App\Policies\ThreadPolicy',
+         'App\Models\Reply' => 'App\Policies\ReplyPolicy',
     ];
 
     /**

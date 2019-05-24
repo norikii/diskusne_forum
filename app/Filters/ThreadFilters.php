@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-use App\User;
+use App\Models\User;
 
 class ThreadFilters extends Filters
 {

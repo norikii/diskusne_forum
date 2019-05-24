@@ -15,7 +15,7 @@ class ReadThreadsTest extends TestCase
     {
         parent::setUp();
 
-        $this->thread = factory('App\Thread')->create();
+        $this->thread = factory('App\Models\Thread')->create();
     }
 
     /**
@@ -41,9 +41,9 @@ class ReadThreadsTest extends TestCase
      */
     function test_a_user_can_filter_threads_according_to_a_channel()
     {
-        $channel = factory('App\Channel')->create();
-        $threadInChannel = factory('App\Thread')->create(['channel_id' => $channel->id]);
-        $threadNotInChannel = factory('App\Thread')->create();
+        $channel = factory('App\Models\Channel')->create();
+        $threadInChannel = factory('App\Models\Thread')->create(['channel_id' => $channel->id]);
+        $threadNotInChannel = factory('App\Models\Thread')->create();
 
         $this->get('/threads/' . $channel->slug)
             ->assertSee($threadInChannel->title)
@@ -53,10 +53,10 @@ class ReadThreadsTest extends TestCase
     /** @test */
     function test_a_user_can_filter_threads_by_any_username()
     {
-        $this->actingAs(factory('App\User')->create(['name' => 'Norik']));
+        $this->actingAs(factory('App\Models\User')->create(['name' => 'Norik']));
 
-        $threadByNorik = factory('App\Thread')->create(['user_id' => auth()->id()]);
-        $threadNotByNorik = factory('App\Thread')->create();
+        $threadByNorik = factory('App\Models\Thread')->create(['user_id' => auth()->id()]);
+        $threadNotByNorik = factory('App\Models\Thread')->create();
 
         $this->get('threads?by=Norik')
             ->assertSee($threadByNorik->title)
@@ -66,11 +66,11 @@ class ReadThreadsTest extends TestCase
     /** @test  */
     function test_a_user_can_filter_threads_by_popularity()
     {
-        $threadsWithTwoReplies = factory('App\Thread')->create();
-        factory('App\Reply', 2)->create(['thread_id' => $threadsWithTwoReplies]);
+        $threadsWithTwoReplies = factory('App\Models\Thread')->create();
+        factory('App\Models\Reply', 2)->create(['thread_id' => $threadsWithTwoReplies]);
 
-        $threadsWithThreeReplies = factory('App\Thread')->create();
-        factory('App\Reply', 3)->create(['thread_id' => $threadsWithThreeReplies]);
+        $threadsWithThreeReplies = factory('App\Models\Thread')->create();
+        factory('App\Models\Reply', 3)->create(['thread_id' => $threadsWithThreeReplies]);
 
         $threadsWithNoReplies = $this->thread;
 
@@ -87,8 +87,8 @@ class ReadThreadsTest extends TestCase
     /** @test */
     function test_a_user_can_filter_threads_by_those_that_are_unanswered()
     {
-        $thread = factory('App\Thread')->create();
-        factory('App\Reply')->create(['thread_id' => $thread->id]);
+        $thread = factory('App\Models\Thread')->create();
+        factory('App\Models\Reply')->create(['thread_id' => $thread->id]);
 
         $response = $this->getJson('threads?unanswered=1')->json();
 
@@ -99,8 +99,8 @@ class ReadThreadsTest extends TestCase
     /** @test */
     function test_a_user_can_request_all_replies_for_a_given_thread()
     {
-        $thread = factory('App\Thread')->create();
-        factory('App\Reply', 2)->create(['thread_id' => $thread->id]);
+        $thread = factory('App\Models\Thread')->create();
+        factory('App\Models\Reply', 2)->create(['thread_id' => $thread->id]);
 
         $response = $this->getJson($thread->path() . '/replies')->json();
 

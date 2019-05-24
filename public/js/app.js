@@ -6864,7 +6864,7 @@ function isSlowBuffer (obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.4.0
+ * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
  *
  * Includes Sizzle.js
@@ -6874,7 +6874,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2019-04-10T19:48Z
+ * Date: 2019-05-01T21:04Z
  */
 ( function( global, factory ) {
 
@@ -7007,7 +7007,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.4.0",
+	version = "3.4.1",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -11363,8 +11363,12 @@ var documentElement = document.documentElement;
 		},
 		composed = { composed: true };
 
+	// Support: IE 9 - 11+, Edge 12 - 18+, iOS 10.0 - 10.2 only
 	// Check attachment across shadow DOM boundaries when possible (gh-3504)
-	if ( documentElement.attachShadow ) {
+	// Support: iOS 10.0-10.2 only
+	// Early iOS 10 versions support `attachShadow` but not `getRootNode`,
+	// leading to errors. We need to check for `getRootNode`.
+	if ( documentElement.getRootNode ) {
 		isAttached = function( elem ) {
 			return jQuery.contains( elem.ownerDocument, elem ) ||
 				elem.getRootNode( composed ) === elem.ownerDocument;
@@ -12224,8 +12228,7 @@ jQuery.event = {
 
 				// Claim the first handler
 				if ( rcheckableType.test( el.type ) &&
-					el.click && nodeName( el, "input" ) &&
-					dataPriv.get( el, "click" ) === undefined ) {
+					el.click && nodeName( el, "input" ) ) {
 
 					// dataPriv.set( el, "click", ... )
 					leverageNative( el, "click", returnTrue );
@@ -12242,8 +12245,7 @@ jQuery.event = {
 
 				// Force setup before triggering a click
 				if ( rcheckableType.test( el.type ) &&
-					el.click && nodeName( el, "input" ) &&
-					dataPriv.get( el, "click" ) === undefined ) {
+					el.click && nodeName( el, "input" ) ) {
 
 					leverageNative( el, "click" );
 				}
@@ -12284,7 +12286,9 @@ function leverageNative( el, type, expectSync ) {
 
 	// Missing expectSync indicates a trigger call, which must force setup through jQuery.event.add
 	if ( !expectSync ) {
-		jQuery.event.add( el, type, returnTrue );
+		if ( dataPriv.get( el, type ) === undefined ) {
+			jQuery.event.add( el, type, returnTrue );
+		}
 		return;
 	}
 
@@ -12299,9 +12303,13 @@ function leverageNative( el, type, expectSync ) {
 			if ( ( event.isTrigger & 1 ) && this[ type ] ) {
 
 				// Interrupt processing of the outer synthetic .trigger()ed event
-				if ( !saved ) {
+				// Saved data should be false in such cases, but might be a leftover capture object
+				// from an async native handler (gh-4350)
+				if ( !saved.length ) {
 
 					// Store arguments for use when handling the inner native event
+					// There will always be at least one argument (an event object), so this array
+					// will not be confused with a leftover capture object.
 					saved = slice.call( arguments );
 					dataPriv.set( this, type, saved );
 
@@ -12314,14 +12322,14 @@ function leverageNative( el, type, expectSync ) {
 					if ( saved !== result || notAsync ) {
 						dataPriv.set( this, type, false );
 					} else {
-						result = undefined;
+						result = {};
 					}
 					if ( saved !== result ) {
 
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
-						return result;
+						return result.value;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
@@ -12336,17 +12344,19 @@ function leverageNative( el, type, expectSync ) {
 
 			// If this is a native event triggered above, everything is now in order
 			// Fire an inner synthetic event with the original arguments
-			} else if ( saved ) {
+			} else if ( saved.length ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, jQuery.event.trigger(
+				dataPriv.set( this, type, {
+					value: jQuery.event.trigger(
 
-					// Support: IE <=9 - 11+
-					// Extend with the prototype to reset the above stopImmediatePropagation()
-					jQuery.extend( saved.shift(), jQuery.Event.prototype ),
-					saved,
-					this
-				) );
+						// Support: IE <=9 - 11+
+						// Extend with the prototype to reset the above stopImmediatePropagation()
+						jQuery.extend( saved[ 0 ], jQuery.Event.prototype ),
+						saved.slice( 1 ),
+						this
+					)
+				} );
 
 				// Abort handling of the native event
 				event.stopImmediatePropagation();
@@ -69147,15 +69157,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************!*\
   !*** ./resources/js/components/UserNotifications.vue ***!
   \*******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserNotifications_vue_vue_type_template_id_23249cfc_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserNotifications.vue?vue&type=template&id=23249cfc&scoped=true& */ "./resources/js/components/UserNotifications.vue?vue&type=template&id=23249cfc&scoped=true&");
 /* harmony import */ var _UserNotifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserNotifications.vue?vue&type=script&lang=js& */ "./resources/js/components/UserNotifications.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _UserNotifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _UserNotifications_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -69185,7 +69194,7 @@ component.options.__file = "resources/js/components/UserNotifications.vue"
 /*!********************************************************************************!*\
   !*** ./resources/js/components/UserNotifications.vue?vue&type=script&lang=js& ***!
   \********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -69251,7 +69260,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/lib/loader.js):\n\n@import \"~@fortawesome/fontawesome-free/scss/fontawesome.scss\";\n       ^\n      Can't find stylesheet to import.\n  ╷\n6 │ @import \"~@fortawesome/fontawesome-free/scss/fontawesome.scss\";\n  │         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  ╵\n  stdin 6:9  root stylesheet\n      in /home/norik/Projects/php/diskusne_forum/resources/sass/app.scss (line 6, column 9)\n    at runLoaders (/home/norik/Projects/php/diskusne_forum/node_modules/webpack/lib/NormalModule.js:301:20)\n    at /home/norik/Projects/php/diskusne_forum/node_modules/loader-runner/lib/LoaderRunner.js:367:11\n    at /home/norik/Projects/php/diskusne_forum/node_modules/loader-runner/lib/LoaderRunner.js:233:18\n    at context.callback (/home/norik/Projects/php/diskusne_forum/node_modules/loader-runner/lib/LoaderRunner.js:111:13)\n    at render (/home/norik/Projects/php/diskusne_forum/node_modules/sass-loader/lib/loader.js:52:13)\n    at Function.$2 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:24443:48)\n    at wP.$2 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:15367:15)\n    at uU.vt (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:9079:42)\n    at uU.vs (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:9081:32)\n    at iB.uF (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8429:46)\n    at us.$0 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8571:7)\n    at Object.eH (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:1512:80)\n    at ad.ba (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8492:3)\n    at iO.ba (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8422:25)\n    at iO.cv (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8409:6)\n    at py.cv (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8199:35)\n    at Object.m (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:1383:19)\n    at /home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:5078:51\n    at xf.a (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:1394:71)\n    at xf.$2 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8214:23)\n    at vS.$2 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8209:25)\n    at uU.vt (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:9079:42)\n    at uU.vs (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:9081:32)\n    at iB.uF (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8429:46)\n    at us.$0 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8571:7)\n    at Object.eH (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:1512:80)\n    at ad.ba (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8492:3)\n    at iO.ba (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8422:25)\n    at iO.cv (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8409:6)\n    at Object.eval (eval at CM (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:648:15), <anonymous>:2:37)\n    at uU.vt (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:9079:42)\n    at uU.vs (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:9081:32)\n    at iB.uF (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8429:46)\n    at us.$0 (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8571:7)\n    at Object.eH (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:1512:80)\n    at ad.ba (/home/norik/Projects/php/diskusne_forum/node_modules/sass/sass.dart.js:8492:3)");
 
 /***/ }),
 
@@ -69262,8 +69271,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/norik/Projects/php/norik/github.com/diskusne_forum/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/norik/Projects/php/norik/github.com/diskusne_forum/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/norik/Projects/php/diskusne_forum/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/norik/Projects/php/diskusne_forum/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

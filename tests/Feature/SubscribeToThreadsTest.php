@@ -12,9 +12,9 @@ class SubscribeToThreadsTest extends TestCase
     /** @test */
     function test_a_user_can_subscribe_to_threads()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         $this->post($thread->path() . '/subscriptions');
 
@@ -24,9 +24,9 @@ class SubscribeToThreadsTest extends TestCase
     /** @test */
     function test_a_user_can_unsubscribe_from_threads()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         $thread->subscribe();
 

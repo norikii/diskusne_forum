@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Notifications\ThreadWasUpdated;
+use App\RecordsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Favorite;
+
 trait Favoritable
 {
     public static function bootFavoritable()

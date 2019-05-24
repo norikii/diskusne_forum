@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Channel;
+use App\Models\Channel;
 use App\Filters\ThreadFilters;
-use App\Thread;
-use App\User;
+use App\Models\Thread;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -82,7 +82,7 @@ class ThreadsController extends Controller
      * Display the specified resource.
      *
      * @param string $channel
-     * @param  \App\Thread $thread
+     * @param  \App\Models\Thread $thread
      *
      * @return \Illuminate\Http\Response
      */
@@ -94,7 +94,7 @@ class ThreadsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Thread  $thread
+     * @param  \App\Models\Thread  $thread
      *
      * @return \Illuminate\Http\Response
      */
@@ -107,7 +107,7 @@ class ThreadsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Thread  $thread
+     * @param  \App\Models\Thread  $thread
      *
      * @return \Illuminate\Http\Response
      */

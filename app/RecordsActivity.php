@@ -55,6 +55,6 @@ trait RecordsActivity
     {
         // morphMany is like hasMany without the need of
         // hardcoding the related model.
-        return $this->morphMany('App\Activity', 'subject');
+        return $this->morphMany('App\Models\Activity', 'subject');
     }
 }

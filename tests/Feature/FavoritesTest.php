@@ -12,9 +12,9 @@ class FavoritesTest extends TestCase
     /** @test */
     function test_an_authenticated_user_can_favorite_any_reply()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $reply = factory('App\Reply')->create();
+        $reply = factory('App\Models\Reply')->create();
 
         $this->post('replies/' . $reply->id . '/favorites');
 
@@ -32,9 +32,9 @@ class FavoritesTest extends TestCase
     /** @test */
     function test_an_authenticated_user_may_only_favorite_a_reply_once()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $reply = factory('App\Reply')->create();
+        $reply = factory('App\Models\Reply')->create();
 
         try {
             $this->post('replies/' . $reply->id . '/favorites');
@@ -49,9 +49,9 @@ class FavoritesTest extends TestCase
     /** @test */
     function test_an_authenticated_user_can_unfavorite_any_reply()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $reply = factory('App\Reply')->create();
+        $reply = factory('App\Models\Reply')->create();
 
         $reply->favorite();
 

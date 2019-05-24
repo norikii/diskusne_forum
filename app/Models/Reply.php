@@ -1,7 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Favoritable;
+use App\RecordsActivity;
 use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model

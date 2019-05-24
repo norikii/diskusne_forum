@@ -21,9 +21,9 @@ class CreateThreadsTest extends TestCase
      */
     function test_an_authenticated_user_can_create_new_forum_thread()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         $this->post('/threads', $thread->toArray());
 
@@ -58,7 +58,7 @@ class CreateThreadsTest extends TestCase
 
     function test_a_thread_requires_a_valid_channel()
     {
-        factory('App\Channel', 2)->create();
+        factory('App\Models\Channel', 2)->create();
 
         $this->publishThread(['channel_id' => null])
             ->assertSessionHasErrors('channel_id');
@@ -74,9 +74,9 @@ class CreateThreadsTest extends TestCase
      */
     public function publishThread($overrides = [])
     {
-        $this->withExceptionHandling()->be(factory('App\User')->create());
+        $this->withExceptionHandling()->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->make($overrides);
+        $thread = factory('App\Models\Thread')->make($overrides);
 
         return $this->post('/threads', $thread->toArray());
     }
@@ -84,10 +84,10 @@ class CreateThreadsTest extends TestCase
     /** @test */
     function test_an_authorized_user_cannot_delete_threads_of_others()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->create(['user_id' => auth()->id()]);
-        $reply = factory('App\Reply')->create(['thread_id' => $thread->id, 'user_id' => auth()->id()]);
+        $thread = factory('App\Models\Thread')->create(['user_id' => auth()->id()]);
+        $reply = factory('App\Models\Reply')->create(['thread_id' => $thread->id, 'user_id' => auth()->id()]);
 
         $response = $this->json('DELETE', $thread->path());
         $response->assertStatus(403);
@@ -101,7 +101,7 @@ class CreateThreadsTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
         $response = $this->delete($thread->path());
 
@@ -113,9 +113,9 @@ class CreateThreadsTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
         $this->delete($thread->path())
             ->assertStatus(403);
     }

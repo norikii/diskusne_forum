@@ -15,11 +15,11 @@ class ParticipateInForumTest extends TestCase
     function test_an_authenticated_user_may_participate_in_forum_threads()
     {
         // gives as an authenticated user
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
-        $reply = factory('App\Reply')->make();
+        $reply = factory('App\Models\Reply')->make();
         $this->post($thread->path() . '/replies', $reply->toArray());
 
         $this->assertDatabaseHas('replies', ['body' => $reply->body]);
@@ -41,11 +41,11 @@ class ParticipateInForumTest extends TestCase
      */
     function test_a_reply_requires_a_body()
     {
-        $this->withExceptionHandling()->be(factory('App\User')->create());
+        $this->withExceptionHandling()->be(factory('App\Models\User')->create());
 
-        $thread = factory('App\Thread')->create();
+        $thread = factory('App\Models\Thread')->create();
 
-        $reply = factory('App\Reply')->make(['body' => null]);
+        $reply = factory('App\Models\Reply')->make(['body' => null]);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
                 ->assertSessionHasErrors('body');
@@ -56,12 +56,12 @@ class ParticipateInForumTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $reply = factory('App\Reply')->create();
+        $reply = factory('App\Models\Reply')->create();
 
         $this->delete("/replies/{$reply->id}")
             ->assertRedirect('login');
 
-        $this->be(factory('App\User')->create())
+        $this->be(factory('App\Models\User')->create())
             ->delete("/replies/{$reply->id}")
             ->assertStatus(403);
     }
@@ -69,9 +69,9 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function test_authorized_users_can_delete_replies()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $reply = factory('App\Reply')->create(['user_id' => auth()->id()]);
+        $reply = factory('App\Models\Reply')->create(['user_id' => auth()->id()]);
 
         $this->delete("/replies/{$reply->id}")->assertStatus(302);
 
@@ -82,9 +82,9 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function test_authorized_users_can_update_replies()
     {
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
 
-        $reply = factory('App\Reply')->create(['user_id' => auth()->id()]);
+        $reply = factory('App\Models\Reply')->create(['user_id' => auth()->id()]);
 
         $updatedReply = 'You have been changed';
         $this->patch("/replies/{$reply->id}", ['body' => $updatedReply]);
@@ -97,12 +97,12 @@ class ParticipateInForumTest extends TestCase
     {
         $this->withExceptionHandling();
 
-        $reply = factory('App\Reply')->create();
+        $reply = factory('App\Models\Reply')->create();
 
         $this->patch("/replies/{$reply->id}")
             ->assertRedirect('login');
 
-        $this->be(factory('App\User')->create())
+        $this->be(factory('App\Models\User')->create())
             ->patch("/replies/{$reply->id}")
             ->assertStatus(403);
     }

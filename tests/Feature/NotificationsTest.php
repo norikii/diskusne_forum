@@ -13,13 +13,13 @@ class NotificationsTest extends TestCase
     {
         parent::setUp();
 
-        $this->be(factory('App\User')->create());
+        $this->be(factory('App\Models\User')->create());
     }
 
     /** @test */
     function test_a_notification_is_prepared_when_a_subscribed_thread_receives_a_new_reply_left_by_not_current_user()
     {
-        $thread = factory('App\Thread')->create()->subscribe();
+        $thread = factory('App\Models\Thread')->create()->subscribe();
 
         $this->assertCount(0, auth()->user()->notifications);
 
@@ -33,7 +33,7 @@ class NotificationsTest extends TestCase
 
         // creating reply of some other user
         $thread->addReply([
-            'user_id' => factory('App\User')->create()->id,
+            'user_id' => factory('App\Models\User')->create()->id,
             'body' => 'Some reply here'
         ]);
 
@@ -43,11 +43,11 @@ class NotificationsTest extends TestCase
     /** @test */
     function test_a_user_can_mark_a_notification_as_read()
     {
-        $thread = factory('App\Thread')->create()->subscribe();
+        $thread = factory('App\Models\Thread')->create()->subscribe();
 
         // creating reply for authenticated user
         $thread->addReply([
-            'user_id' => factory('App\User')->create()->id,
+            'user_id' => factory('App\Models\User')->create()->id,
             'body' => 'Some reply here'
         ]);
 
@@ -68,11 +68,11 @@ class NotificationsTest extends TestCase
     /** @test */
     function test_a_user_can_fetch_their_unread_notifications()
     {
-        $thread = factory('App\Thread')->create()->subscribe();
+        $thread = factory('App\Models\Thread')->create()->subscribe();
 
         // creating reply for authenticated user
         $thread->addReply([
-            'user_id' => factory('App\User')->create()->id,
+            'user_id' => factory('App\Models\User')->create()->id,
             'body' => 'Some reply here'
         ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
@@ -25,32 +25,32 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\Thread::class, function (Faker $faker) {
+$factory->define(\App\Models\Thread::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'body' => $faker->paragraph,
         'user_id' => function () {
-            return factory('App\User')->create()->id;
+            return factory('App\Models\User')->create()->id;
         },
         'channel_id' => function () {
-            return factory('App\Channel')->create()->id;
+            return factory('App\Models\Channel')->create()->id;
         }
     ];
 });
 
-$factory->define(\App\Reply::class, function (Faker $faker) {
+$factory->define(\App\Models\Reply::class, function (Faker $faker) {
     return [
         'body' => $faker->paragraph,
         'user_id' => function () {
-            return factory('App\User')->create()->id;
+            return factory('App\Models\User')->create()->id;
         },
         'thread_id' => function () {
-            return factory('App\Thread')->create()->id;
+            return factory('App\Models\Thread')->create()->id;
         },
     ];
 });
 
-$factory->define(\App\Channel::class, function (Faker $faker) {
+$factory->define(\App\Models\Channel::class, function (Faker $faker) {
     $name = $faker->word;
 
     return [
@@ -64,9 +64,9 @@ $factory->define(\Illuminate\Notifications\DatabaseNotification::class, function
         'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
         'type' => 'App\Notifications\ThreadWasUpdated',
         'notifiable_id' => function () {
-            return auth()->id() ?: factory('App\User')->create()->id;
+            return auth()->id() ?: factory('App\Models\User')->create()->id;
         },
-        'notifiable_type' => 'App\User',
+        'notifiable_type' => 'App\Models\User',
         'data' => ['foo' => 'bar']
     ];
 });
