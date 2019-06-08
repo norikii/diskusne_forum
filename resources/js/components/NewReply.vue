@@ -44,6 +44,10 @@
         methods: {
             addReply() {
                 axios.post(location.pathname + '/replies', { body: this.body })
+                    // catching any exception or error occurring at this point
+                    .catch(error => {
+                        flash(error.response.data, 'danger');
+                    })
                     // on successful response
                     .then(({data}) => {
                        this.body = '';

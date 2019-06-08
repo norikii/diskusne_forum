@@ -95,8 +95,6 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     function test_unauthorized_user_cannot_update_replies()
     {
-        $this->withExceptionHandling();
-
         $reply = factory('App\Reply')->create();
 
         $this->patch("/replies/{$reply->id}")
@@ -105,5 +103,23 @@ class ParticipateInForumTest extends TestCase
         $this->be(factory('App\User')->create())
             ->patch("/replies/{$reply->id}")
             ->assertStatus(403);
+    }
+
+    /** @test */
+    function test_replies_that_contain_spam_may_not_be_created()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->be(factory('App\User')->create());
+
+        $thread = factory('App\Thread')->create();
+
+        $reply = factory('App\Reply')->make([
+           'body' => 'Yahoo customer support'
+        ]);
+
+        $this->expectException(\Exception::class);
+
+        $this->post($thread->path() . '/replies', $reply->toArray());
     }
 }

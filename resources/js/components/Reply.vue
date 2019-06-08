@@ -67,9 +67,12 @@
             update() {
                 // on button click update we submit ajax request to patch to the endpoint
                 // and we send through the updated body
-                axios.patch('/replies/' + this.data.id, {
-                    body: this.body
-                });
+                axios.patch(
+                        '/replies/' + this.data.id, {
+                        body: this.body
+                    })
+                        .catch(error => flash(error.response.data, 'danger')
+                    );
 
                 this.editing = false;
 
